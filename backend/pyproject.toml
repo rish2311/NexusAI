@@ -1,0 +1,51 @@
+[project]
+name = "nexusai-backend"
+version = "1.0.0"
+description = "NexusAI Sprint 1 — authenticated streaming chatbot (Gemini free tier)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+  "sqlalchemy[asyncio]>=2.0.36",
+  "asyncpg>=0.30.0",
+  "alembic>=1.14.0",
+  "pydantic[email]>=2.10.0",
+  "pydantic-settings>=2.6.0",
+  "python-jose[cryptography]>=3.3.0",
+  "argon2-cffi>=23.1.0",
+  "httpx>=0.28.0",
+  "redis>=5.2.0",
+  "google-generativeai>=0.8.0",
+  "python-multipart>=0.0.17",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+  "pytest-asyncio>=0.24.0",
+  "httpx>=0.28.0",
+  "aiosqlite>=0.20.0",
+  "ruff>=0.8.0",
+  "pyright>=1.1.390",
+]
+
+[build-system]
+requires = ["setuptools>=75.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
